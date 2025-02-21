@@ -23,7 +23,7 @@ def scrape_kaisai_date(from_: str, to_: str):
         #forでスクレイピングする場合サイトに負荷をかけないように必ずsleepを入れる！！
         time.sleep(1)   # 1秒スリープ
         #htmlを加工
-        soup = BeautifulSoup(html)
+        soup = BeautifulSoup(html, "lxml")
         a_list = soup.find("table", class_="Calendar_Table").find_all("a") 
         for a in a_list:
             kaisai_data = re.findall(r"kaisai_date=(\d{8})", a["href"])[0]
