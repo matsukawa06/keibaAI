@@ -15,7 +15,9 @@ from pathlib import Path
 import random
 
 # 定数は大文字で指定する
-HTML_RACE_DIR = Path("..", "data", "html", "race")
+HTML_DIR = Path("..", "data", "html")
+HTML_RACE_DIR = HTML_DIR / "race"
+HTML_HORSE_DIR = HTML_DIR / "horse"
 
 USER_AGENTS = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36",
@@ -108,7 +110,38 @@ def scrape_html_race(race_id_list: list[str], save_dir: Path = HTML_RACE_DIR) ->
             headers = {"User-Agent": random.choice(USER_AGENTS)}
             request = Request(url, headers=headers)
             html = urlopen(request).read()
-            time.sleep(2)
+            time.sleep(3)
+            with open(filepath, "wb") as f:
+                f.write(html)
+            html_path_list.append(filepath)
+    return html_path_list
+
+def scrape_html_horse(
+        horse_id_list: list[str],
+        save_dir: Path = HTML_HORSE_DIR,
+        skip: bool = True
+    ) -> list[Path]:
+    '''
+    netkeiba.comのhorseページのhtmlをスクレイピングして、save_dirに保存する関数。
+    すでにhtmlが存在、skip=True場合はスキップされて、新たに取得されたhtmlのパスだけが
+    返ってくる。
+    horseページは出走すれば情報が更新されていくため、スキップするかを引数に追加する。
+    '''
+    html_path_list = []
+    # parents=Trueで、指定より上位のdirが存在しない場合、上位も作成する
+    # exist_ok=Trueで、すでに存在する場合、同じものを作成してOK！これ指定しないと既に存在しますエラーになる
+    save_dir.mkdir(parents=True, exist_ok=True)
+    for horse_id in tqdm(horse_id_list):
+        filepath = save_dir / f"{horse_id}.bin"  # ファイルパスをスクレイピング前に移動
+        # ファイルが既に存在し、skip=True場合はスキップする
+        if filepath.is_file() and skip:
+            print(f"skipped: {horse_id}")
+        else:
+            url = f"https://db.netkeiba.com/horse/{horse_id}"
+            headers = {"User-Agent": random.choice(USER_AGENTS)}
+            request = Request(url, headers=headers)
+            html = urlopen(request).read()
+            time.sleep(3)
             with open(filepath, "wb") as f:
                 f.write(html)
             html_path_list.append(filepath)
