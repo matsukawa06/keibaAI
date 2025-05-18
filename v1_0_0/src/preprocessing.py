@@ -7,13 +7,15 @@ COMMON_DATA_DIR = Path("..", "..", "common", "data")
 RAWDF_DIR = COMMON_DATA_DIR / "rawdf"
 MAPPING_DIR = COMMON_DATA_DIR / "mapping"
 OUTPUT_DIR = Path("..", "data", "01_preprocessed")
-OUTPUT_DIR.mkdir(exist_ok=True, parents=True) # （※1）
+OUTPUT_DIR.mkdir(exist_ok=True, parents=True)
 
 # カテゴリ変数を数値に変換するためのマッピング
 with open(MAPPING_DIR / "sex.json", "r") as f:
     sex_mapping = json.load(f)
 with open(MAPPING_DIR / "race_type.json", "r") as f:
     race_type_mapping = json.load(f)
+with open(MAPPING_DIR / "around.json", "r") as f:
+    around_mapping = json.load(f)
 with open(MAPPING_DIR / "weather.json", "r") as f:
     weather_mapping = json.load(f)
 with open(MAPPING_DIR / "ground_state.json", "r") as f:
@@ -117,3 +119,68 @@ def process_horse_results(
     ]
     df.to_csv(output_dir / save_filename, sep="\t", index=False)
     return df
+
+def process_race_info(
+    input_dir: Path = RAWDF_DIR,
+    output_dir: Path = OUTPUT_DIR,
+    save_filename: str = "race_info.csv",
+    race_type_mapping: dict = race_type_mapping,
+    around_mapping: dict = around_mapping,
+    weather_mapping: dict = weather_mapping,
+    ground_state_mapping: dict = ground_state_mapping,
+    race_class_mapping: dict = race_class_mapping,
+) ->pd.DataFrame:
+    """
+    未加工のレース情報テーブルをinput_dirから読み込んで加工し、
+    output_dirに保存する関数。
+    """
+    df = pd.read_csv(input_dir / save_filename, sep="\t")
+    # evalで文字列型の列をリスト型に変換し、一時的な列を作成
+    df["tmp"] = df["info1"].map(lambda x: eval(x)[0])
+    # ダート or 芝 or 障害
+    df["race_type"] = df["tmp"].str[0].map(race_type_mapping)
+    # 右 or 左 or 直線
+    df["around"] = df["tmp"].str[1].map(around_mapping)
+    df["course_len"] = df["tmp"].str.extract(r"(\d+)")
+    df["weather"] = df["info1"].str.extract(r"天候:(\w+)")[0].map(weather_mapping)
+    df["ground_state"] = (
+        df["info1"].str.extract(r"(芝|ダート|障害):(\w+)")[1].map(ground_state_mapping)
+    )
+    df["date"] = pd.to_datetime(
+        df["info2"].map(lambda x: eval(x)[0]), format="%Y年%m月%d日"
+    )
+    regex_race_class = "|".join(race_class_mapping)
+    df["race_class"] = (
+        df["title"]
+        .str.extract(rf"({regex_race_class})")
+        # タイトルからレース階級情報が取れない場合はinfo2から取得
+        .fillna(df["info2"].str.extract(rf"({regex_race_class})"))[0]
+        .map(race_class_mapping)
+    ) # (*1)
+    df["place"] = df["race_id"].astype(str).str[4:6].astype(int) # (*2)
+    # 使用する列を選択
+    df = df[
+        [
+            "race_id",
+            "date",
+            "race_type",
+            "around",
+            "course_len",
+            "weather",
+            "ground_state",
+            "race_class",
+            "place",
+        ]
+    ]
+    df.to_csv(output_dir / save_filename, sep="\t", index=False)
+    return df
+
+# *1の補足
+# regex_race_class = "|".join(race_class_mapping) で
+# レースタイトルからレースの階級を分類。
+# ただし、レースタイトルにレース階級の文字列が含まれず、うまく分類されないケースがあるため
+# info2列の文字列から分類するようにしている。
+# *2の補足
+# race_idから開催場所のidを取得して、place列として追加している。
+# race_idは、"開催年"+"開催場所id"+"何回目の開催か"+"何日目の開催か"+"何レース目か"
+# という構成になっているため、4,5番目を抜き出すことで、開催場所idを取得することができる。
