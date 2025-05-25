@@ -111,7 +111,13 @@ def create_race_info(
     concat_df.index.name = "race_id"
     concat_df.columns = concat_df.columns.str.replace(" ", "")
     save_dir.mkdir(exist_ok=True, parents=True)
-    concat_df.to_csv(save_dir / save_filename, sep="\t")
+    # concat_df.to_csv(save_dir / save_filename, sep="\t")
+    update_rawdf(
+        concat_df,
+        key="horse_id",
+        save_filename=save_filename,
+        save_dir=save_dir,
+    )
     return concat_df.reset_index()
 
 
@@ -121,7 +127,7 @@ def create_horse_results(
     save_filename: str = "horse_results.csv"
 ) -> pd.DataFrame:
     '''
-    horseページのhtmlを読み込んで、馬の過去成績テーブルに加工する関数。
+    保存されているhorseページのhtmlを読み込んで、馬の過去成績テーブルに加工する関数。
     '''
     dfs = {}
     for html_path in tqdm(html_path_list):
@@ -129,17 +135,21 @@ def create_horse_results(
             try:
                 horse_id = html_path.stem
                 html = f.read()
-                df = pd.read_html(html)[3]
-                # 受賞歴がある馬の場合、３番目に受賞歴テーブルが来るため、４番目のデータを取得する
-                if df.columns[0] == "受賞歴":
-                    df = pd.read_html(html)[4]
+                df = pd.read_html(html)[2]
+                # # 受賞歴がある馬の場合、３番目に受賞歴テーブルが来るため、４番目のデータを取得する
+                # if df.columns[0] == "受賞歴":
+                #     df = pd.read_html(html)[4]
                 # 新馬の競走馬レビューがついた場合、次のhtmlへ飛ばす
-                elif df.columns[0] == 0:
+                if df.columns[0] == 0:
                     continue
+                # 最初の列にrace_idを挿入
                 df.index = [horse_id] * len(df)
                 dfs[horse_id] = df
             except IndexError as e:
                 print(f"table not found at {horse_id}")
+                continue
+            except ValueError as e:
+                print(f"{e} at {horse_id}")
                 continue
     concat_df = pd.concat(dfs.values())
     concat_df.index.name = "horse_id"
@@ -147,3 +157,23 @@ def create_horse_results(
     save_dir.mkdir(parents=True, exist_ok=True)
     concat_df.to_csv(save_dir / save_filename, sep="\t")
     return concat_df.reset_index()
+
+def update_rawdf(
+    new_df: pd.DataFrame,
+    key: str,
+    save_filename: str,
+    save_dir: Path = RAWDF_DIR,
+) -> None:
+    """
+    既存のrawdfに新しいデータを追加して保存する関数。
+    """
+    save_dir.mkdir(parents=True, exist_ok=True)
+    if (save_dir / save_filename).exists():
+        old_df = pd.read_csv(save_dir / save_filename, sep="\t", dtype={f"{key}": str})
+        # 念の為、key列をstr型に変換
+        new_df[key] = new_df[key].astype(str)
+        df = pd.concat([old_df[~old_df[key].isin(new_df[key])], new_df])
+        df.to_csv(save_dir / save_filename, sep="\t", index=False)
+    else:
+        # ファイルが存在しない場合は単にそのまま保存
+        new_df.to_csv(save_dir / save_filename, sep="\t", index=False)
