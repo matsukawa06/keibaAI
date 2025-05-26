@@ -251,12 +251,12 @@ min-width: unset;
 <li class="AI New">
 <a href="https://race.netkeiba.com/AI/AI.html?rf=navi" title="AI" id="navi_link_AI">A I</a>
 </li>
+<li class="Special">
+<a href="https://race.netkeiba.com/special/index.html?id=0059&rf=navi" title="日本ダービー" id="navi_link_Special">日本ダービー</a>
+</li>
 <li class="Yoso">
 <a href="https://yoso.netkeiba.com/?access=init&rf=navi" title="予想" id="navi_link_yoso">予想</a>
 </li>
-<!-- <li class="Special">
-<a href="https://race.netkeiba.com/special/index.html?id=0133&rf=navi" title="有馬記念" id="navi_link_Special">有馬記念</a>
-</li> -->
 <li class="Builder New">
 <a href="https://builder.netkeiba.com/?rf=navi" title="UMAIビルダー" id="navi_link_builder">UMAIビルダー</a>
 </li>
@@ -800,7 +800,7 @@ get_horse_detail_note('2022103013', 'Horse_Note_Box');
 </tr>
 <tr>
 <th>通算成績</th>
-<td>5戦0勝 [<a href="/horse/result/2022103013/" title="全競走成績">0-0-0-5</a>]</td>
+<td>6戦0勝 [<a href="/horse/result/2022103013/" title="全競走成績">0-0-0-6</a>]</td>
 </tr>
 <tr>
 <th>主な勝鞍</th>
@@ -1014,6 +1014,59 @@ $('#horse_award_box').html(data.data);
 </thead>
 <tbody>
 <tr>
+<td><a href="/race/list/20250525/">2025/05/25</a></td>
+<td><a href="/race/sum/04/20250525/">1新潟8</a></td>
+<td>小雨</td>
+<td class="txt_right">5</td>
+<td class=""><a href="/race/202504010805/" title="3歳未勝利">3歳未勝利</a></td>
+<td>
+<a href="/race/movie/202504010805" target="_blank" title="3歳未勝利の映像"><img src="/style/netkeiba.ja/image/icon_douga.png" border="0" /></a>
+
+
+</td>
+<td class="txt_right">16</td>
+<td class="txt_right">3</td>
+<td class="txt_right">5</td>
+<td class="txt_right">203.4</td>
+<td class=" txt_right">15</td>
+<td class="bml txt_right">10</td>
+<td>
+<a href="/jockey/result/recent/01203/" title="石田拓郎">石田拓郎</a>
+
+</td>
+<td>52</td>
+<td>芝2000</td>
+<td>稍</td>
+
+<td class="bml txt_right">
+
+
+&nbsp;
+</td>
+<td class="txt_right">2:08.5</td>
+<td class="txt_right">1.6</td>
+<td class="bml txt_right">
+
+
+&nbsp;
+</td>
+<td>9-9-9-8</td>
+<td>38.0-36.5</td>
+<td class="bml">37.0</td>
+<td>380(-12)</td>
+<td class="bml" align="center" nowrap>
+<a href="/?pid=horse_comment&id=2022103013&rid=202504010805"><img src="/style/netkeiba.ja/image/ico_comment.gif" width="13" height="13" border="0" /></a>
+
+</td>
+<td class="bml" nowrap>
+
+
+&nbsp;
+</td>
+<td><a href="/horse/2022106613/">ストラニエーロ</a></td>
+
+<td>&nbsp;</td>
+</tr><tr>
 <td><a href="/race/list/20250413/">2025/04/13</a></td>
 <td><a href="/race/sum/06/20250413/">3中山6</a></td>
 <td>雨</td>

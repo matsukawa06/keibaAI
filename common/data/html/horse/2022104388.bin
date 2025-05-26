@@ -251,12 +251,12 @@ min-width: unset;
 <li class="AI New">
 <a href="https://race.netkeiba.com/AI/AI.html?rf=navi" title="AI" id="navi_link_AI">A I</a>
 </li>
+<li class="Special">
+<a href="https://race.netkeiba.com/special/index.html?id=0059&rf=navi" title="日本ダービー" id="navi_link_Special">日本ダービー</a>
+</li>
 <li class="Yoso">
 <a href="https://yoso.netkeiba.com/?access=init&rf=navi" title="予想" id="navi_link_yoso">予想</a>
 </li>
-<!-- <li class="Special">
-<a href="https://race.netkeiba.com/special/index.html?id=0133&rf=navi" title="有馬記念" id="navi_link_Special">有馬記念</a>
-</li> -->
 <li class="Builder New">
 <a href="https://builder.netkeiba.com/?rf=navi" title="UMAIビルダー" id="navi_link_builder">UMAIビルダー</a>
 </li>
@@ -338,19 +338,18 @@ $('.login_show').remove();
 </script>
 
 <div class="genre_menu fc">
-        <ul>
-                <li ><a href="/" title="競馬データTOP">競馬データTOP</a></li>
-                <li class="active"><a href="/?pid=horse_top" title="競走馬">競走馬</a></li>
-                <li ><a href="/?pid=jockey_top" title="騎手">騎手</a></li>
-                <li ><a href="/?pid=trainer_top" title="調教師">調教師</a></li>
-                <li ><a href="/?pid=owner_top" title="馬主">馬主</a></li>
-                <li ><a href="/?pid=breeder_top" title="生産者">生産者</a></li>
-                <li ><a href="/?pid=race_top" title="レース">レース</a></li>
-                <li ><a href="/?pid=classic_index" title="クラシック">クラシック</a></li>
-                <li ><a href="https://db.sp.netkeiba.com/winner_search/home" title="勝ち馬サーチ">勝ち馬サーチ</a></li>
-        </ul>
+<ul>
+<li ><a href="/" title="競馬データTOP">競馬データTOP</a></li>
+<li class="active"><a href="/?pid=horse_top" title="競走馬">競走馬</a></li>
+<li ><a href="/?pid=jockey_top" title="騎手">騎手</a></li>
+<li ><a href="/?pid=trainer_top" title="調教師">調教師</a></li>
+<li ><a href="/?pid=owner_top" title="馬主">馬主</a></li>
+<li ><a href="/?pid=breeder_top" title="生産者">生産者</a></li>
+<li ><a href="/?pid=race_top" title="レース">レース</a></li>
+<li ><a href="/?pid=classic_index" title="クラシック">クラシック</a></li>
+<li ><a href="https://db.sp.netkeiba.com/winner_search/home" title="勝ち馬サーチ">勝ち馬サーチ</a></li>
+</ul>
 </div><!-- /.genre_menu -->
-
 <div id="contents" class="fc">
 
 <style>
@@ -443,7 +442,7 @@ padding-top: 2px;
 </a>
 </li>
 </ul>
-<p class="fav_user_count"><a href="__PC_COMMUNITY_NETKEIBA__?pid=horse_favorite_user_list&id=2022104388" title="登録者一覧" class=""><span>56人</span></a></p>
+<p class="fav_user_count"><a href="__PC_COMMUNITY_NETKEIBA__?pid=horse_favorite_user_list&id=2022104388" title="登録者一覧" class=""><span>61人</span></a></p>
 <!-- お気に入り登録ボタン -->
 <ul>
 <li class="pog_regist fc">
@@ -804,7 +803,7 @@ get_horse_detail_note('2022104388', 'Horse_Note_Box');
 </tr>
 <tr>
 <th>通算成績</th>
-<td>0戦0勝 [<a href="/horse/result/2022104388/" title="全競走成績">0-0-0-0</a>]</td>
+<td>1戦0勝 [<a href="/horse/result/2022104388/" title="全競走成績">0-0-0-1</a>]</td>
 </tr>
 <tr>
 <th>主な勝鞍</th>
@@ -982,10 +981,99 @@ $('#horse_award_box').html(data.data);
 <a href="https://www.netkeiba.com/?pid=sogoch_introduction&id=2022104388" target="_blank" title="詳しく見る" class="popup_link_01"><img src="https://cdn.netkeiba.com/img.db//style/netkeiba.ja/image/btn_sp_info_link_02.png" alt="詳しく見る" class="imgover" /></a>
 </div><!-- /.sp_info_box_01 -->
 </div>
+<table cellpadding="0" cellspacing="1" summary="ベネチアンクロームの競走戦績" class="db_h_race_results nk_tb_common">
+<thead>
+<tr align="center">
+<th>日付</th>
+<th>開催</th>
+<th>天<br />気</th>
+<th>R</th>
+<th>レース名</th>
+<th>映<br />像<br /><img src="https://cdn.netkeiba.com/img.db//style/netkeiba.ja/image/icon_premium_01.png" alt="" class="png_img" /></th>
+<th>頭<br />数</th>
+<th>枠<br />番</th>
+<th>馬<br />番</th>
+<th>オ<br />ッ<br />ズ</th>
+<th>人<br />気</th>
+<th>着<br />順</th>
+<th>騎手</th>
+<th>斤<br />量</th>
+<th>距離</th>
+<th>馬<br />場</th>
+<th>馬場<br />指数<br /><img src="https://cdn.netkeiba.com/img.db//style/netkeiba.ja/image/icon_premium_01.png" alt="" class="png_img" /></th>
+<th>タイム</th>
+<th>着差</th>
+<th>ﾀｲﾑ<br />指数<br /><img src="https://cdn.netkeiba.com/img.db//style/netkeiba.ja/image/icon_premium_01.png" alt="" class="png_img" /></th>
+<th>通過</th>
+<th>ペース</th>
+<th>上り</th>
+<th>馬体重</th>
+<th>厩舎<br />ｺﾒﾝﾄ<br /><img src="https://cdn.netkeiba.com/img.db//style/netkeiba.ja/image/icon_premium_01.png" alt="" class="png_img" /></th>
+<th>備考<br /><img src="https://cdn.netkeiba.com/img.db//style/netkeiba.ja/image/icon_premium_01.png" alt="" class="png_img" /></th>
+<th>勝ち馬<br />(2着馬)</th>
+<th>賞金</th>
+</tr>
 
-<div class="contents">
-競走データがありません
-</div>
+</thead>
+<tbody>
+<tr>
+<td><a href="/race/list/20250525/">2025/05/25</a></td>
+<td><a href="/race/sum/08/20250525/">2京都10</a></td>
+<td>曇</td>
+<td class="txt_right">2</td>
+<td class=""><a href="/race/202508021002/" title="3歳未勝利">3歳未勝利</a></td>
+<td>
+<a href="/race/movie/202508021002" target="_blank" title="3歳未勝利の映像"><img src="/style/netkeiba.ja/image/icon_douga.png" border="0" /></a>
+
+
+</td>
+<td class="txt_right">16</td>
+<td class="txt_right">2</td>
+<td class="txt_right">3</td>
+<td class="txt_right">29.5</td>
+<td class=" txt_right">6</td>
+<td class="bml txt_right">9</td>
+<td>
+<a href="/jockey/result/recent/01018/" title="和田竜二">和田竜二</a>
+
+</td>
+<td>55</td>
+<td>ダ1800</td>
+<td>不</td>
+
+<td class="bml txt_right">
+
+
+&nbsp;
+</td>
+<td class="txt_right">1:52.7</td>
+<td class="txt_right">2.1</td>
+<td class="bml txt_right">
+
+
+&nbsp;
+</td>
+<td>16-16-7-5</td>
+<td>35.8-36.9</td>
+<td class="bml">38.4</td>
+<td>504(0)</td>
+<td class="bml" align="center" nowrap>
+<a href="/?pid=horse_comment&id=2022104388&rid=202508021002"><img src="/style/netkeiba.ja/image/ico_comment.gif" width="13" height="13" border="0" /></a>
+
+</td>
+<td class="bml" nowrap>
+
+
+&nbsp;
+</td>
+<td><a href="/horse/2022104788/">ジュルナール</a></td>
+
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+
 <script type="text/javascript">
 $(document).on( 'click', '#action_regist', function(){
 event.preventDefault();

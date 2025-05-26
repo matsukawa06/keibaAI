@@ -251,12 +251,12 @@ min-width: unset;
 <li class="AI New">
 <a href="https://race.netkeiba.com/AI/AI.html?rf=navi" title="AI" id="navi_link_AI">A I</a>
 </li>
+<li class="Special">
+<a href="https://race.netkeiba.com/special/index.html?id=0059&rf=navi" title="日本ダービー" id="navi_link_Special">日本ダービー</a>
+</li>
 <li class="Yoso">
 <a href="https://yoso.netkeiba.com/?access=init&rf=navi" title="予想" id="navi_link_yoso">予想</a>
 </li>
-<!-- <li class="Special">
-<a href="https://race.netkeiba.com/special/index.html?id=0133&rf=navi" title="有馬記念" id="navi_link_Special">有馬記念</a>
-</li> -->
 <li class="Builder New">
 <a href="https://builder.netkeiba.com/?rf=navi" title="UMAIビルダー" id="navi_link_builder">UMAIビルダー</a>
 </li>
@@ -626,7 +626,7 @@ document.getElementById( "HorseMainPhoto" ).setAttribute( "src", "https://cdn.ne
 }
 </script>
 <div class="db_photo_box fc">
-<img src="https://cdn.netkeiba.com/img.db/v1.1/show_photo.php?horse_id=2021104908&no=50354&tn=yes&tmp=no" alt="" width="230" height="164" class="db_photo_main" id="HorseMainPhoto" style="object-fit: contain; background-color: #f5f5f5"/>
+<img src="https://cdn.netkeiba.com/img.db/v1.1/show_photo.php?horse_id=2021104908&no=61085&tn=yes&tmp=no" alt="" width="230" height="164" class="db_photo_main" id="HorseMainPhoto" style="object-fit: contain; background-color: #f5f5f5"/>
 
 <div class="Slid_List Photo_Slid">
 <ul id="Horse_Photo_Slide">
@@ -796,7 +796,7 @@ get_horse_detail_note('2021104908', 'Horse_Note_Box');
 </tr>
 <tr>
 <th>通算成績</th>
-<td>12戦2勝 [<a href="/horse/result/2021104908/" title="全競走成績">2-3-0-7</a>]</td>
+<td>13戦2勝 [<a href="/horse/result/2021104908/" title="全競走成績">2-3-0-8</a>]</td>
 </tr>
 <tr>
 <th>主な勝鞍</th>
@@ -1010,6 +1010,59 @@ $('#horse_award_box').html(data.data);
 </thead>
 <tbody>
 <tr>
+<td><a href="/race/list/20250525/">2025/05/25</a></td>
+<td><a href="/race/sum/04/20250525/">1新潟8</a></td>
+<td>小雨</td>
+<td class="txt_right">10</td>
+<td class=""><a href="/race/202504010810/" title="火打山特別(2勝クラス)">火打山特別(2勝クラス)</a></td>
+<td>
+<a href="/race/movie/202504010810" target="_blank" title="火打山特別(2勝クラス)の映像"><img src="/style/netkeiba.ja/image/icon_douga.png" border="0" /></a>
+
+
+</td>
+<td class="txt_right">15</td>
+<td class="txt_right">7</td>
+<td class="txt_right">12</td>
+<td class="txt_right">39.0</td>
+<td class=" txt_right">8</td>
+<td class="bml txt_right">7</td>
+<td>
+<a href="/jockey/result/recent/01185/" title="小沢大仁">小沢大仁</a>
+
+</td>
+<td>58</td>
+<td>ダ1200</td>
+<td>稍</td>
+
+<td class="bml txt_right">
+
+
+&nbsp;
+</td>
+<td class="txt_right">1:12.2</td>
+<td class="txt_right">1.7</td>
+<td class="bml txt_right">
+
+
+&nbsp;
+</td>
+<td>9-10</td>
+<td>33.9-36.6</td>
+<td class="bml">37.2</td>
+<td>464(+6)</td>
+<td class="bml" align="center" nowrap>
+<a href="/?pid=horse_comment&id=2021104908&rid=202504010810"><img src="/style/netkeiba.ja/image/ico_comment.gif" width="13" height="13" border="0" /></a>
+
+</td>
+<td class="bml" nowrap>
+
+
+&nbsp;
+</td>
+<td><a href="/horse/2021100895/">サフランヒーロー</a></td>
+
+<td>&nbsp;</td>
+</tr><tr>
 <td><a href="/race/list/20250315/">2025/03/15</a></td>
 <td><a href="/race/sum/07/20250315/">2中京1</a></td>
 <td>小雨</td>

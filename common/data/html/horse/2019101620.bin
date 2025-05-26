@@ -251,12 +251,12 @@ min-width: unset;
 <li class="AI New">
 <a href="https://race.netkeiba.com/AI/AI.html?rf=navi" title="AI" id="navi_link_AI">A I</a>
 </li>
+<li class="Special">
+<a href="https://race.netkeiba.com/special/index.html?id=0059&rf=navi" title="日本ダービー" id="navi_link_Special">日本ダービー</a>
+</li>
 <li class="Yoso">
 <a href="https://yoso.netkeiba.com/?access=init&rf=navi" title="予想" id="navi_link_yoso">予想</a>
 </li>
-<!-- <li class="Special">
-<a href="https://race.netkeiba.com/special/index.html?id=0133&rf=navi" title="有馬記念" id="navi_link_Special">有馬記念</a>
-</li> -->
 <li class="Builder New">
 <a href="https://builder.netkeiba.com/?rf=navi" title="UMAIビルダー" id="navi_link_builder">UMAIビルダー</a>
 </li>
@@ -442,7 +442,7 @@ padding-top: 2px;
 </a>
 </li>
 </ul>
-<p class="fav_user_count"><a href="__PC_COMMUNITY_NETKEIBA__?pid=horse_favorite_user_list&id=2019101620" title="登録者一覧" class=""><span>554人</span></a></p>
+<p class="fav_user_count"><a href="__PC_COMMUNITY_NETKEIBA__?pid=horse_favorite_user_list&id=2019101620" title="登録者一覧" class=""><span>553人</span></a></p>
 <!-- お気に入り登録ボタン -->
 
 </div><!-- /.HorseRegist_BtnBox -->
@@ -626,7 +626,7 @@ document.getElementById( "HorseMainPhoto" ).setAttribute( "src", "https://cdn.ne
 }
 </script>
 <div class="db_photo_box fc">
-<img src="https://cdn.netkeiba.com/img.db/v1.1/show_photo.php?horse_id=2019101620&no=53223&tn=yes&tmp=no" alt="" width="230" height="164" class="db_photo_main" id="HorseMainPhoto" style="object-fit: contain; background-color: #f5f5f5"/>
+<img src="https://cdn.netkeiba.com/img.db/v1.1/show_photo.php?horse_id=2019101620&no=112774&tn=yes&tmp=no" alt="" width="230" height="164" class="db_photo_main" id="HorseMainPhoto" style="object-fit: contain; background-color: #f5f5f5"/>
 
 <div class="Slid_List Photo_Slid">
 <ul id="Horse_Photo_Slide">
@@ -796,7 +796,7 @@ get_horse_detail_note('2019101620', 'Horse_Note_Box');
 </tr>
 <tr>
 <th>通算成績</th>
-<td>24戦1勝 [<a href="/horse/result/2019101620/" title="全競走成績">1-1-1-21</a>]</td>
+<td>25戦1勝 [<a href="/horse/result/2019101620/" title="全競走成績">1-1-1-22</a>]</td>
 </tr>
 <tr>
 <th>主な勝鞍</th>
@@ -1010,6 +1010,59 @@ $('#horse_award_box').html(data.data);
 </thead>
 <tbody>
 <tr>
+<td><a href="/race/list/20250525/">2025/05/25</a></td>
+<td><a href="/race/sum/04/20250525/">1新潟8</a></td>
+<td>小雨</td>
+<td class="txt_right">12</td>
+<td class=""><a href="/race/202504010812/" title="4歳以上1勝クラス">4歳以上1勝クラス</a></td>
+<td>
+<a href="/race/movie/202504010812" target="_blank" title="4歳以上1勝クラスの映像"><img src="/style/netkeiba.ja/image/icon_douga.png" border="0" /></a>
+
+
+</td>
+<td class="txt_right">15</td>
+<td class="txt_right">5</td>
+<td class="txt_right">9</td>
+<td class="txt_right">181.4</td>
+<td class=" txt_right">15</td>
+<td class="bml txt_right">8</td>
+<td>
+<a href="/jockey/result/recent/01185/" title="小沢大仁">小沢大仁</a>
+
+</td>
+<td>56</td>
+<td>ダ1800</td>
+<td>稍</td>
+
+<td class="bml txt_right">
+
+
+&nbsp;
+</td>
+<td class="txt_right">1:54.3</td>
+<td class="txt_right">1.3</td>
+<td class="bml txt_right">
+
+
+&nbsp;
+</td>
+<td>11-11-9-8</td>
+<td>36.0-38.4</td>
+<td class="bml">38.8</td>
+<td>438(-4)</td>
+<td class="bml" align="center" nowrap>
+<a href="/?pid=horse_comment&id=2019101620&rid=202504010812"><img src="/style/netkeiba.ja/image/ico_comment.gif" width="13" height="13" border="0" /></a>
+
+</td>
+<td class="bml" nowrap>
+
+
+&nbsp;
+</td>
+<td><a href="/horse/2021102595/">バルダンツァ</a></td>
+
+<td>&nbsp;</td>
+</tr><tr>
 <td><a href="/race/list/20250330/">2025/03/30</a></td>
 <td><a href="/race/sum/07/20250330/">2中京6</a></td>
 <td>晴</td>

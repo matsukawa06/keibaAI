@@ -251,12 +251,12 @@ min-width: unset;
 <li class="AI New">
 <a href="https://race.netkeiba.com/AI/AI.html?rf=navi" title="AI" id="navi_link_AI">A I</a>
 </li>
+<li class="Special">
+<a href="https://race.netkeiba.com/special/index.html?id=0059&rf=navi" title="日本ダービー" id="navi_link_Special">日本ダービー</a>
+</li>
 <li class="Yoso">
 <a href="https://yoso.netkeiba.com/?access=init&rf=navi" title="予想" id="navi_link_yoso">予想</a>
 </li>
-<!-- <li class="Special">
-<a href="https://race.netkeiba.com/special/index.html?id=0133&rf=navi" title="有馬記念" id="navi_link_Special">有馬記念</a>
-</li> -->
 <li class="Builder New">
 <a href="https://builder.netkeiba.com/?rf=navi" title="UMAIビルダー" id="navi_link_builder">UMAIビルダー</a>
 </li>
@@ -442,7 +442,7 @@ padding-top: 2px;
 </a>
 </li>
 </ul>
-<p class="fav_user_count"><a href="__PC_COMMUNITY_NETKEIBA__?pid=horse_favorite_user_list&id=2022101326" title="登録者一覧" class=""><span>284人</span></a></p>
+<p class="fav_user_count"><a href="__PC_COMMUNITY_NETKEIBA__?pid=horse_favorite_user_list&id=2022101326" title="登録者一覧" class=""><span>288人</span></a></p>
 <!-- お気に入り登録ボタン -->
 <ul>
 <li class="pog_regist fc">
@@ -630,7 +630,7 @@ document.getElementById( "HorseMainPhoto" ).setAttribute( "src", "https://cdn.ne
 }
 </script>
 <div class="db_photo_box fc">
-<img src="https://cdn.netkeiba.com/img.db/v1.1/show_photo.php?horse_id=2022101326&no=23490&tn=yes&tmp=no" alt="" width="230" height="164" class="db_photo_main" id="HorseMainPhoto" style="object-fit: contain; background-color: #f5f5f5"/>
+<img src="https://cdn.netkeiba.com/img.db/v1.1/show_photo.php?horse_id=2022101326&no=39797&tn=yes&tmp=no" alt="" width="230" height="164" class="db_photo_main" id="HorseMainPhoto" style="object-fit: contain; background-color: #f5f5f5"/>
 
 <div class="Slid_List Photo_Slid">
 <ul id="Horse_Photo_Slide">
@@ -794,13 +794,13 @@ get_horse_detail_note('2022101326', 'Horse_Note_Box');
 <td>
 
 
-220万円 (中央)
+440万円 (中央)
 
 </td>
 </tr>
 <tr>
 <th>通算成績</th>
-<td>8戦0勝 [<a href="/horse/result/2022101326/" title="全競走成績">0-1-0-7</a>]</td>
+<td>9戦0勝 [<a href="/horse/result/2022101326/" title="全競走成績">0-2-0-7</a>]</td>
 </tr>
 <tr>
 <th>主な勝鞍</th>
@@ -1014,6 +1014,59 @@ $('#horse_award_box').html(data.data);
 </thead>
 <tbody>
 <tr>
+<td><a href="/race/list/20250525/">2025/05/25</a></td>
+<td><a href="/race/sum/08/20250525/">2京都10</a></td>
+<td>曇</td>
+<td class="txt_right">3</td>
+<td class=""><a href="/race/202508021003/" title="3歳未勝利">3歳未勝利</a></td>
+<td>
+<a href="/race/movie/202508021003" target="_blank" title="3歳未勝利の映像"><img src="/style/netkeiba.ja/image/icon_douga.png" border="0" /></a>
+
+
+</td>
+<td class="txt_right">14</td>
+<td class="txt_right">4</td>
+<td class="txt_right">6</td>
+<td class="txt_right">9.5</td>
+<td class=" txt_right">5</td>
+<td class="rank_2 txt_right">2</td>
+<td>
+<a href="/jockey/result/recent/01208/" title="田口貫太">田口貫太</a>
+
+</td>
+<td>57</td>
+<td>ダ1900</td>
+<td>不</td>
+
+<td class="bml txt_right">
+
+
+&nbsp;
+</td>
+<td class="txt_right">1:59.3</td>
+<td class="txt_right">0.8</td>
+<td class="bml txt_right">
+
+
+&nbsp;
+</td>
+<td>2-2-1-2</td>
+<td>29.7-37.8</td>
+<td class="bml">38.6</td>
+<td>482(+6)</td>
+<td class="bml" align="center" nowrap>
+<a href="/?pid=horse_comment&id=2022101326&rid=202508021003"><img src="/style/netkeiba.ja/image/ico_comment.gif" width="13" height="13" border="0" /></a>
+
+</td>
+<td class="bml" nowrap>
+
+
+&nbsp;
+</td>
+<td><a href="/horse/2022104382/">ワールドキッス</a></td>
+
+<td>220.0</td>
+</tr><tr>
 <td><a href="/race/list/20250503/">2025/05/03</a></td>
 <td><a href="/race/sum/08/20250503/">2京都3</a></td>
 <td>晴</td>

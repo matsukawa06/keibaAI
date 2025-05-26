@@ -251,12 +251,12 @@ min-width: unset;
 <li class="AI New">
 <a href="https://race.netkeiba.com/AI/AI.html?rf=navi" title="AI" id="navi_link_AI">A I</a>
 </li>
+<li class="Special">
+<a href="https://race.netkeiba.com/special/index.html?id=0059&rf=navi" title="日本ダービー" id="navi_link_Special">日本ダービー</a>
+</li>
 <li class="Yoso">
 <a href="https://yoso.netkeiba.com/?access=init&rf=navi" title="予想" id="navi_link_yoso">予想</a>
 </li>
-<!-- <li class="Special">
-<a href="https://race.netkeiba.com/special/index.html?id=0133&rf=navi" title="有馬記念" id="navi_link_Special">有馬記念</a>
-</li> -->
 <li class="Builder New">
 <a href="https://builder.netkeiba.com/?rf=navi" title="UMAIビルダー" id="navi_link_builder">UMAIビルダー</a>
 </li>
@@ -338,19 +338,18 @@ $('.login_show').remove();
 </script>
 
 <div class="genre_menu fc">
-        <ul>
-                <li ><a href="/" title="競馬データTOP">競馬データTOP</a></li>
-                <li class="active"><a href="/?pid=horse_top" title="競走馬">競走馬</a></li>
-                <li ><a href="/?pid=jockey_top" title="騎手">騎手</a></li>
-                <li ><a href="/?pid=trainer_top" title="調教師">調教師</a></li>
-                <li ><a href="/?pid=owner_top" title="馬主">馬主</a></li>
-                <li ><a href="/?pid=breeder_top" title="生産者">生産者</a></li>
-                <li ><a href="/?pid=race_top" title="レース">レース</a></li>
-                <li ><a href="/?pid=classic_index" title="クラシック">クラシック</a></li>
-                <li ><a href="https://db.sp.netkeiba.com/winner_search/home" title="勝ち馬サーチ">勝ち馬サーチ</a></li>
-        </ul>
+<ul>
+<li ><a href="/" title="競馬データTOP">競馬データTOP</a></li>
+<li class="active"><a href="/?pid=horse_top" title="競走馬">競走馬</a></li>
+<li ><a href="/?pid=jockey_top" title="騎手">騎手</a></li>
+<li ><a href="/?pid=trainer_top" title="調教師">調教師</a></li>
+<li ><a href="/?pid=owner_top" title="馬主">馬主</a></li>
+<li ><a href="/?pid=breeder_top" title="生産者">生産者</a></li>
+<li ><a href="/?pid=race_top" title="レース">レース</a></li>
+<li ><a href="/?pid=classic_index" title="クラシック">クラシック</a></li>
+<li ><a href="https://db.sp.netkeiba.com/winner_search/home" title="勝ち馬サーチ">勝ち馬サーチ</a></li>
+</ul>
 </div><!-- /.genre_menu -->
-
 <div id="contents" class="fc">
 
 <style>
@@ -804,7 +803,7 @@ get_horse_detail_note('2022103126', 'Horse_Note_Box');
 </tr>
 <tr>
 <th>通算成績</th>
-<td>4戦0勝 [<a href="/horse/result/2022103126/" title="全競走成績">0-0-0-4</a>]</td>
+<td>5戦0勝 [<a href="/horse/result/2022103126/" title="全競走成績">0-0-0-5</a>]</td>
 </tr>
 <tr>
 <th>主な勝鞍</th>
@@ -1018,6 +1017,59 @@ $('#horse_award_box').html(data.data);
 </thead>
 <tbody>
 <tr>
+<td><a href="/race/list/20250525/">2025/05/25</a></td>
+<td><a href="/race/sum/08/20250525/">2京都10</a></td>
+<td>曇</td>
+<td class="txt_right">4</td>
+<td class=""><a href="/race/202508021004/" title="3歳未勝利">3歳未勝利</a></td>
+<td>
+<a href="/race/movie/202508021004" target="_blank" title="3歳未勝利の映像"><img src="/style/netkeiba.ja/image/icon_douga.png" border="0" /></a>
+
+
+</td>
+<td class="txt_right">18</td>
+<td class="txt_right">4</td>
+<td class="txt_right">7</td>
+<td class="txt_right">254.0</td>
+<td class=" txt_right">15</td>
+<td class="bml txt_right">16</td>
+<td>
+<a href="/jockey/result/recent/01015/" title="古川吉洋">古川吉洋</a>
+
+</td>
+<td>57</td>
+<td>芝1600</td>
+<td>重</td>
+
+<td class="bml txt_right">
+
+
+&nbsp;
+</td>
+<td class="txt_right">1:39.2</td>
+<td class="txt_right">3.0</td>
+<td class="bml txt_right">
+
+
+&nbsp;
+</td>
+<td>15-15</td>
+<td>35.7-36.4</td>
+<td class="bml">37.5</td>
+<td>462(-4)</td>
+<td class="bml" align="center" nowrap>
+<a href="/?pid=horse_comment&id=2022103126&rid=202508021004"><img src="/style/netkeiba.ja/image/ico_comment.gif" width="13" height="13" border="0" /></a>
+
+</td>
+<td class="bml" nowrap>
+
+
+&nbsp;
+</td>
+<td><a href="/horse/2022104222/">リアルフォルゴーレ</a></td>
+
+<td>&nbsp;</td>
+</tr><tr>
 <td><a href="/race/list/20250511/">2025/05/11</a></td>
 <td><a href="/race/sum/08/20250511/">2京都6</a></td>
 <td>晴</td>

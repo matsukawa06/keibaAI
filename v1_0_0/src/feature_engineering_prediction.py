@@ -59,46 +59,32 @@ class PredictionFeatureCreator:
         self,
         population_dir: Path = POPULATION_DIR,
         population_filename: str = "population.csv",
-        input_dir: Path = INPUT_DIR,
+        horse_results_dir: Path = INPUT_DIR,
         horse_results_filename: Path = "horse_results_prediction.csv",
-        jockey_leading_filename: Path = "jockey_leading.csv",
-        trainer_leading_filename: Path = "trainer_leading.csv",
-        peds_filename: str = "peds_prediction.csv",
-        sire_leading_filename: str = "sire_leading.csv",
         output_dir: Path = OUTPUT_DIR,
         output_filename: str = "features_prediction.csv",
     ):
         self.population = pd.read_csv(population_dir / population_filename, sep="\t")
-        self.horse_results = pd.read_csv(input_dir / horse_results_filename, sep="\t")
-        self.jockey_leading = pd.read_csv(input_dir / jockey_leading_filename, sep="\t")
-        self.trainer_leading = pd.read_csv(
-            input_dir / trainer_leading_filename, sep="\t"
+        self.horse_results = pd.read_csv(
+            horse_results_dir / horse_results_filename, sep="\t"
         )
-        self.peds = pd.read_csv(input_dir / peds_filename, sep="\t")
-        self.sire_leading = pd.read_csv(input_dir / sire_leading_filename, sep="\t")
         self.output_dir = output_dir
         self.output_filename = output_filename
         self.htmls = {}
-        self.agg_horse_per_group_cols_dfs = {}
-
-    def create_baselog(self):
-        """
-        horse_resultsをレース結果テーブルの日付よりも過去に絞り、集計元のログを作成。
-        """
-        self.baselog = (
-            self.population.merge(
-                self.horse_results, on="horse_id", suffixes=("", "_horse")
-            )
-            .query("date_horse < date")
-            .sort_values("date_horse", ascending=False)
-        )
 
     def agg_horse_n_races(self, n_races: list[int] = [3, 5, 10, 1000]) -> None:
         """
         直近nレースの着順と賞金の平均を集計する関数。
         出走馬が確定した時点で先に実行しておいても良い。
         """
-        grouped_df = self.baselog.groupby(["race_id", "horse_id"])
+        grouped_df = (
+            self.population.merge(
+                self.horse_results, on="horse_id", suffixes=("", "_horse")
+            )
+            .query("date_horse < date")
+            .sort_values("date_horse", ascending=False)
+            .groupby(["race_id", "horse_id"])
+        )
         merged_df = self.population.copy()
         for n_race in n_races:
             df = (
@@ -110,61 +96,14 @@ class PredictionFeatureCreator:
             merged_df = merged_df.merge(df, on=["race_id", "horse_id"])
         self.agg_horse_n_races_df = merged_df
 
-    def agg_horse_n_races_relative(
-        self, n_races: list[int] = [2, 3, 5, 10, 1000]
-    ) -> None:
-        """
-        直近nレースの着順と賞金の平均を集計する関数。
-        """
-        grouped_df = self.baselog.groupby(["race_id", "horse_id"])
-        merged_df = self.population.copy()
-        for n_race in tqdm(n_races, desc="agg_horse_n_races_relative"):
-            df = (
-                grouped_df.head(n_race)
-                .groupby(["race_id", "horse_id"])[
-                    [
-                        "rank",
-                        "prize",
-                        "rank_diff",
-                        "race_class",
-                    ]
-                ]
-                .agg(["mean", "median", "max", "min"])
-            )
-            df.columns = ["_".join(col) + f"_{n_race}races" for col in df.columns]
-            # レースごとの相対値に変換
-            tmp_df = df.groupby(["race_id"])
-            relative_df = ((df - tmp_df.mean()) / tmp_df.std()).add_suffix("_relative")
-            merged_df = merged_df.merge(
-                relative_df, on=["race_id", "horse_id"], how="left"
-            )
-        self.agg_horse_n_races_relative_df = merged_df
-
-    def agg_interval(self):
-        """
-        前走からの出走間隔を集計する関数。
-        """
-        print("running agg_interval()...")
-        df = (
-            self.baselog.groupby(["race_id", "horse_id", "date"])["date_horse"]
-            .max()
-            .reset_index()
-        )
-        df["interval"] = (
-            pd.to_datetime(df["date"]) - pd.to_datetime(df["date_horse"])
-        ).dt.days
-        self.agg_interval_df = df
-
     def fetch_shubuta_page_html(self, race_id: str) -> None:
         """
         レースidを指定すると、出馬表ページのhtmlをスクレイピングする関数。
         """
-        print("fetching shubuta page html...")
         options = Options()
         options.add_argument("--headless")
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
-        options.add_argument("--user-agent=" + random.choice(USER_AGENTS))
         # chrome driverをインストール
         driver_path = ChromeDriverManager().install()
         url = f"https://race.netkeiba.com/race/shutuba.html?race_id={race_id}"
@@ -202,24 +141,16 @@ class PredictionFeatureCreator:
             trainer_id_list.append(int(trainer_id))
         df["trainer_id"] = trainer_id_list
         # 前処理
-        df = df[df.iloc[:, 2] != "取消"]
         df["wakuban"] = df.iloc[:, 0].astype(int)
         df["umaban"] = df.iloc[:, 1].astype(int)
         df["sex"] = df.iloc[:, 4].str[0].map(sex_mapping)
         df["age"] = df.iloc[:, 4].str[1:].astype(int)
         df["impost"] = df.iloc[:, 5].astype(float)
         df["weight"] = df.iloc[:, 8].str.extract(r"(\d+)").astype(int)
-        df["weight_diff"] = (
-            df.iloc[:, 8]
-            .str.replace("前計不", "0", regex=False)
-            .str.extract(r"\((.+)\)")
-            .fillna(0)
-            .astype(int)
-        )
+        df["weight_diff"] = df.iloc[:, 8].str.extract(r"\((.+)\)").astype(int)
         df["tansho_odds"] = df.iloc[:, 9].astype(float)
         df["popularity"] = df.iloc[:, 10].astype(int)
         df["race_id"] = int(race_id)
-        df["n_horses"] = df.groupby("race_id")["race_id"].transform("count")
         # 使用する列を選択
         df = df[
             [
@@ -236,7 +167,6 @@ class PredictionFeatureCreator:
                 "age",
                 "weight",
                 "weight_diff",
-                "n_horses",
             ]
         ]
         self.results = df
@@ -285,295 +215,29 @@ class PredictionFeatureCreator:
         info_dict["place"] = int(race_id[4:6])
         self.race_info = pd.DataFrame(info_dict, index=[0])
 
-    def agg_horse_per_course_len(
-        self, n_races: list[int] = [1, 2, 3, 5, 10, 20]
-    ) -> None:
-        """
-        直近nレースの馬の過去成績を距離・race_typeごとに集計し、相対値に変換する関数。
-        """
-        baselog = (
-            self.population.merge(
-                self.race_info[["race_id", "course_len", "race_type"]], on="race_id"
-            )
-            .merge(
-                self.horse_results,
-                on=["horse_id", "course_len", "race_type"],
-                suffixes=("", "_horse"),
-            )
-            .query("date_horse < date")
-            .sort_values("date_horse", ascending=False)
-        )
-        grouped_df = baselog.groupby(["race_id", "horse_id"])
-        merged_df = self.population.copy()
-        for n_race in tqdm(n_races, desc="agg_horse_per_course_len"):
-            df = (
-                grouped_df.head(n_race)
-                .groupby(["race_id", "horse_id"])[
-                    [
-                        "rank",
-                        "prize",
-                        "rank_diff",
-                        "time",
-                        "win",
-                        "show",
-                    ]
-                ]
-                .agg(["mean", "min"])
-            )
-            df.columns = [
-                "_".join(col) + f"_{n_race}races_per_course_len" for col in df.columns
-            ]
-            # レースごとの相対値に変換
-            tmp_df = df.groupby(["race_id"])
-            relative_df = ((df - tmp_df.mean()) / tmp_df.std()).add_suffix("_relative")
-            merged_df = merged_df.merge(
-                relative_df, on=["race_id", "horse_id"], how="left"
-            )
-        self.agg_horse_per_course_len_df = merged_df
-
-    def agg_horse_per_group_cols(
-        self,
-        group_cols: list[str],
-        df_name: str,
-        n_races: list[int] = [1, 2, 3, 5, 10, 20],
-    ) -> None:
-        """
-        直近nレースの馬の過去成績をgroup_colsごとに集計し、相対値に変換する関数。
-        """
-        baselog = (
-            self.population.merge(
-                self.race_info[["race_id"] + group_cols], on="race_id"
-            )
-            .merge(
-                self.horse_results,
-                on=["horse_id"] + group_cols,
-                suffixes=("", "_horse"),
-            )
-            .query("date_horse < date")
-            .sort_values("date_horse", ascending=False)
-        )
-        grouped_df = baselog.groupby(["race_id", "horse_id"])
-        merged_df = self.population.copy()
-        for n_race in tqdm(n_races, desc=f"agg_horse_per_{df_name}"):
-            df = (
-                grouped_df.head(n_race)
-                .groupby(["race_id", "horse_id"])[
-                    [
-                        "rank",
-                        "prize",
-                        "rank_diff",
-                        "time",
-                        "win",
-                        "show",
-                    ]
-                ]
-                .agg(["mean", "max", "min"])
-            )
-            df.columns = [
-                "_".join(col) + f"_{n_race}races_per_{df_name}" for col in df.columns
-            ]
-            # レースごとの相対値に変換
-            tmp_df = df.groupby(["race_id"])
-            relative_df = ((df - tmp_df.mean()) / tmp_df.std()).add_suffix("_relative")
-            merged_df = merged_df.merge(
-                relative_df, on=["race_id", "horse_id"], how="left"
-            )
-        self.agg_horse_per_group_cols_dfs[df_name] = merged_df
-
-    def agg_jockey(self):
-        """
-        騎手の過去成績を紐付け、相対値に変換する関数。
-        """
-        print("running agg_jockey()...")
-        df = self.population.merge(
-            self.results[["race_id", "horse_id", "jockey_id"]],
-            on=["race_id", "horse_id"],
-        )
-        df["year"] = pd.to_datetime(df["date"]).dt.year - 1
-        df = (
-            df.merge(self.jockey_leading, on=["jockey_id", "year"], how="left")
-            .drop(["date", "jockey_id", "year"], axis=1)
-            .set_index(["race_id", "horse_id"])
-            .add_prefix("jockey_")
-        )
-        # レースごとの相対値に変換
-        tmp_df = df.groupby(["race_id"])
-        relative_df = ((df - tmp_df.mean()) / tmp_df.std()).add_suffix("_relative")
-        self.agg_jockey_df = relative_df
-
-    def agg_trainer(self):
-        """
-        調教師の過去成績を紐付け、相対値に変換する関数。
-        """
-        print("running agg_trainer()...")
-        df = self.population.merge(
-            self.results[["race_id", "horse_id", "trainer_id"]],
-            on=["race_id", "horse_id"],
-        )
-        df["year"] = pd.to_datetime(df["date"]).dt.year - 1
-        df = (
-            df.merge(self.trainer_leading, on=["trainer_id", "year"], how="left")
-            .drop(["date", "trainer_id", "year"], axis=1)
-            .set_index(["race_id", "horse_id"])
-            .add_prefix("trainer_")
-        )
-        # レースごとの相対値に変換
-        tmp_df = df.groupby(["race_id"])
-        relative_df = ((df - tmp_df.mean()) / tmp_df.std()).add_suffix("_relative")
-        self.agg_trainer_df = relative_df
-
-    def agg_sire(self):
-        """
-        種牡馬の過去成績を紐付け、相対値に変換する関数。
-        """
-        print("running agg_sire()...")
-        df = self.population.merge(
-            self.peds[["horse_id", "sire_id"]],
-            on="horse_id",
-        ).merge(
-            self.race_info[["race_id", "race_type", "course_len"]],
-        )
-        df["year"] = pd.to_datetime(df["date"]).dt.year - 1
-        df = df.merge(
-            self.sire_leading,
-            on=["sire_id", "year", "race_type"],
-            suffixes=("", "_sire"),
-        ).set_index(["race_id", "horse_id"])
-        df["course_len_diff"] = df["course_len"] - df["course_len_sire"]
-        df = df[["n_races", "n_wins", "winrate", "course_len_diff"]].add_prefix("sire_")
-        # レースごとの相対値に変換
-        tmp_df = df.groupby(["race_id"])
-        relative_df = ((df - tmp_df.mean()) / tmp_df.std()).add_suffix("_relative")
-        self.agg_sire_df = relative_df
-
-    def cross_features(self):
-        """
-        交互作用特徴量を作成する関数。
-        """
-        print("running cross_feature()...")
-        df = self.population.merge(
-            self.race_info[["race_id", "race_type", "around"]],
-            on="race_id",
-        ).merge(
-            self.results[["race_id", "horse_id", "wakuban", "umaban", "sex"]],
-            on=["race_id", "horse_id"],
-        )
-        df["date"] = pd.to_datetime(df["date"])
-        df["month"] = df["date"].dt.month
-        df["sin_date"] = np.sin(2 * np.pi * df["date"].dt.dayofyear / 365.25) + 1
-        df["cos_date"] = np.cos(2 * np.pi * df["date"].dt.dayofyear / 365.25) + 1
-        df["wakuban_race_type"] = df["race_type"].map({0: 1, 1: -1}) * df["wakuban"]
-        df["umaban_race_type"] = df["race_type"].map({0: 1, 1: -1}) * df["umaban"]
-        df["wakuban_around"] = df["around"].map({2: 1}) * df["wakuban"]
-        df["umaban_around"] = df["around"].map({2: 1}) * df["umaban"]
-        df["month_sex"] = df["sex"].map({1: 1, 0: -1}) * df["month"]
-        df["sin_date_sex"] = df["sex"].map({1: 1, 0: -1}) * df["sin_date"]
-        df["cos_date_sex"] = df["sex"].map({1: 1, 0: -1}) * df["cos_date"]
-        self.cross_features_df = df[
-            [
-                "race_id",
-                "horse_id",
-                "wakuban_race_type",
-                "umaban_race_type",
-                "wakuban_around",
-                "umaban_around",
-                "month",
-                "sin_date",
-                "cos_date",
-                "month_sex",
-                "sin_date_sex",
-                "cos_date_sex",
-            ]
-        ]
-
     def create_features(
         self, race_id: str, skip_agg_horse: bool = False
     ) -> pd.DataFrame:
         """
         特徴量作成処理を実行し、populationテーブルに全ての特徴量を結合する。
-        先に馬の過去成績集計を実行しておいた場合は、
+        先にagg_horse_n_races()を実行しておいた場合は、
         skip_agg_horse=Trueとすればスキップできる。
         """
-        # 馬の過去成績集計（先に実行しておいた場合は、スキップできる）
+        # 馬の過去成績集計
+        # 先に実行しておいた場合は、スキップできる
         if not skip_agg_horse:
-            self.create_baselog()
             self.agg_horse_n_races()
-            self.agg_horse_n_races_relative()
-            self.agg_interval()
         # 各種テーブルの取得
         self.fetch_shubuta_page_html(race_id)
         self.fetch_results(race_id, self.htmls[race_id])
         self.fetch_race_info(race_id, self.htmls[race_id])
-        # グループごとの馬の過去成績集計（race_infoのカラムが必要なため、ここで実行）
-        self.agg_horse_per_course_len()
-        self.agg_horse_per_group_cols(
-            group_cols=["ground_state", "race_type"], df_name="ground_state_race_type"
-        )
-        self.agg_horse_per_group_cols(group_cols=["race_class"], df_name="race_class")
-        self.agg_horse_per_group_cols(group_cols=["race_type"], df_name="race_type")
-        # リーディングデータの紐付け
-        self.agg_jockey()
-        self.agg_trainer()
-        self.agg_sire()
-        self.cross_features()
         # 全ての特徴量を結合
-        print("merging all features...")
         features = (
             self.population.merge(self.results, on=["race_id", "horse_id"])
             .merge(self.race_info, on="race_id")
             .merge(
                 self.agg_horse_n_races_df,
-                on=["race_id", "horse_id"],
-                how="left",
-            )
-            .merge(
-                self.agg_horse_n_races_relative_df,
-                on=["race_id", "horse_id"],
-                how="left",
-            )
-            .merge(
-                self.agg_jockey_df,
-                on=["race_id", "horse_id"],
-                how="left",
-            )
-            .merge(
-                self.agg_trainer_df,
-                on=["race_id", "horse_id"],
-                how="left",
-            )
-            .merge(
-                self.agg_horse_per_course_len_df,
                 on=["race_id", "date", "horse_id"],
-                how="left",
-            )
-            .merge(
-                self.agg_horse_per_group_cols_dfs["ground_state_race_type"],
-                on=["race_id", "date", "horse_id"],
-                how="left",
-            )
-            .merge(
-                self.agg_horse_per_group_cols_dfs["race_class"],
-                on=["race_id", "date", "horse_id"],
-                how="left",
-            )
-            .merge(
-                self.agg_horse_per_group_cols_dfs["race_type"],
-                on=["race_id", "date", "horse_id"],
-                how="left",
-            )
-            .merge(
-                self.agg_sire_df,
-                on=["race_id", "horse_id"],
-                how="left",
-            )
-            .merge(
-                self.agg_interval_df,
-                on=["race_id", "date", "horse_id"],
-                how="left",
-            )
-            .merge(
-                self.cross_features_df,
-                on=["race_id", "horse_id"],
                 how="left",
             )
         )

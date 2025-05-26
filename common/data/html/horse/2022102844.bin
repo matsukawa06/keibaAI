@@ -251,12 +251,12 @@ min-width: unset;
 <li class="AI New">
 <a href="https://race.netkeiba.com/AI/AI.html?rf=navi" title="AI" id="navi_link_AI">A I</a>
 </li>
+<li class="Special">
+<a href="https://race.netkeiba.com/special/index.html?id=0059&rf=navi" title="∆¸À‹•¿°º•”°º" id="navi_link_Special">∆¸À‹•¿°º•”°º</a>
+</li>
 <li class="Yoso">
 <a href="https://yoso.netkeiba.com/?access=init&rf=navi" title="ÕΩ¡€" id="navi_link_yoso">ÕΩ¡€</a>
 </li>
-<!-- <li class="Special">
-<a href="https://race.netkeiba.com/special/index.html?id=0133&rf=navi" title="Õ≠«œµ≠«∞" id="navi_link_Special">Õ≠«œµ≠«∞</a>
-</li> -->
 <li class="Builder New">
 <a href="https://builder.netkeiba.com/?rf=navi" title="UMAI•”•Î•¿°º" id="navi_link_builder">UMAI•”•Î•¿°º</a>
 </li>
@@ -803,7 +803,7 @@ get_horse_detail_note('2022102844', 'Horse_Note_Box');
 </tr>
 <tr>
 <th>ƒÃªª¿Æ¿”</th>
-<td>1¿Ô0æ° [<a href="/horse/result/2022102844/" title="¡¥∂•¡ˆ¿Æ¿”">0-0-0-1</a>]</td>
+<td>2¿Ô0æ° [<a href="/horse/result/2022102844/" title="¡¥∂•¡ˆ¿Æ¿”">0-0-0-2</a>]</td>
 </tr>
 <tr>
 <th>ºÁ§ æ°∞»</th>
@@ -1017,6 +1017,59 @@ $('#horse_award_box').html(data.data);
 </thead>
 <tbody>
 <tr>
+<td><a href="/race/list/20250525/">2025/05/25</a></td>
+<td><a href="/race/sum/08/20250525/">2µ˛≈‘10</a></td>
+<td>∆ﬁ</td>
+<td class="txt_right">2</td>
+<td class=""><a href="/race/202508021002/" title="3∫–Ã§æ°Õ¯">3∫–Ã§æ°Õ¯</a></td>
+<td>
+<a href="/race/movie/202508021002" target="_blank" title="3∫–Ã§æ°Õ¯§Œ±«¡¸"><img src="/style/netkeiba.ja/image/icon_douga.png" border="0" /></a>
+
+
+</td>
+<td class="txt_right">16</td>
+<td class="txt_right">4</td>
+<td class="txt_right">7</td>
+<td class="txt_right">52.1</td>
+<td class=" txt_right">10</td>
+<td class="bml txt_right">11</td>
+<td>
+<a href="/jockey/result/recent/01034/" title="ºÚ∞Ê≥ÿ">ºÚ∞Ê≥ÿ</a>
+
+</td>
+<td>55</td>
+<td>•¿1800</td>
+<td>…‘</td>
+
+<td class="bml txt_right">
+
+
+&nbsp;
+</td>
+<td class="txt_right">1:53.8</td>
+<td class="txt_right">3.2</td>
+<td class="bml txt_right">
+
+
+&nbsp;
+</td>
+<td>13-13-15-14</td>
+<td>35.8-36.9</td>
+<td class="bml">38.7</td>
+<td>470(+4)</td>
+<td class="bml" align="center" nowrap>
+<a href="/?pid=horse_comment&id=2022102844&rid=202508021002"><img src="/style/netkeiba.ja/image/ico_comment.gif" width="13" height="13" border="0" /></a>
+
+</td>
+<td class="bml" nowrap>
+
+
+&nbsp;
+</td>
+<td><a href="/horse/2022104788/">•∏•Â•Î• °º•Î</a></td>
+
+<td>&nbsp;</td>
+</tr><tr>
 <td><a href="/race/list/20250202/">2025/02/02</a></td>
 <td><a href="/race/sum/08/20250202/">1µ˛≈‘2</a></td>
 <td>∆ﬁ</td>

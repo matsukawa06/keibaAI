@@ -251,12 +251,12 @@ min-width: unset;
 <li class="AI New">
 <a href="https://race.netkeiba.com/AI/AI.html?rf=navi" title="AI" id="navi_link_AI">A I</a>
 </li>
+<li class="Special">
+<a href="https://race.netkeiba.com/special/index.html?id=0059&rf=navi" title="日本ダービー" id="navi_link_Special">日本ダービー</a>
+</li>
 <li class="Yoso">
 <a href="https://yoso.netkeiba.com/?access=init&rf=navi" title="予想" id="navi_link_yoso">予想</a>
 </li>
-<!-- <li class="Special">
-<a href="https://race.netkeiba.com/special/index.html?id=0133&rf=navi" title="有馬記念" id="navi_link_Special">有馬記念</a>
-</li> -->
 <li class="Builder New">
 <a href="https://builder.netkeiba.com/?rf=navi" title="UMAIビルダー" id="navi_link_builder">UMAIビルダー</a>
 </li>
@@ -442,7 +442,7 @@ padding-top: 2px;
 </a>
 </li>
 </ul>
-<p class="fav_user_count"><a href="__PC_COMMUNITY_NETKEIBA__?pid=horse_favorite_user_list&id=2022103847" title="登録者一覧" class=""><span>435人</span></a></p>
+<p class="fav_user_count"><a href="__PC_COMMUNITY_NETKEIBA__?pid=horse_favorite_user_list&id=2022103847" title="登録者一覧" class=""><span>434人</span></a></p>
 <!-- お気に入り登録ボタン -->
 <ul>
 <li class="pog_regist fc">
@@ -800,7 +800,7 @@ get_horse_detail_note('2022103847', 'Horse_Note_Box');
 </tr>
 <tr>
 <th>通算成績</th>
-<td>4戦0勝 [<a href="/horse/result/2022103847/" title="全競走成績">0-1-0-3</a>]</td>
+<td>5戦0勝 [<a href="/horse/result/2022103847/" title="全競走成績">0-1-0-4</a>]</td>
 </tr>
 <tr>
 <th>主な勝鞍</th>
@@ -1014,6 +1014,59 @@ $('#horse_award_box').html(data.data);
 </thead>
 <tbody>
 <tr>
+<td><a href="/race/list/20250525/">2025/05/25</a></td>
+<td><a href="/race/sum/05/20250525/">2東京10</a></td>
+<td>曇</td>
+<td class="txt_right">1</td>
+<td class=""><a href="/race/202505021001/" title="3歳未勝利">3歳未勝利</a></td>
+<td>
+<a href="/race/movie/202505021001" target="_blank" title="3歳未勝利の映像"><img src="/style/netkeiba.ja/image/icon_douga.png" border="0" /></a>
+
+
+</td>
+<td class="txt_right">16</td>
+<td class="txt_right">5</td>
+<td class="txt_right">9</td>
+<td class="txt_right">7.6</td>
+<td class=" txt_right">4</td>
+<td class="bml txt_right">14</td>
+<td>
+<a href="/jockey/result/recent/01140/" title="横山和生">横山和生</a>
+
+</td>
+<td>55</td>
+<td>ダ1400</td>
+<td>不</td>
+
+<td class="bml txt_right">
+
+
+&nbsp;
+</td>
+<td class="txt_right">1:26.3</td>
+<td class="txt_right">1.8</td>
+<td class="bml txt_right">
+
+
+&nbsp;
+</td>
+<td>14-14</td>
+<td>34.9-37.4</td>
+<td class="bml">37.1</td>
+<td>464(-2)</td>
+<td class="bml" align="center" nowrap>
+<a href="/?pid=horse_comment&id=2022103847&rid=202505021001"><img src="/style/netkeiba.ja/image/ico_comment.gif" width="13" height="13" border="0" /></a>
+
+</td>
+<td class="bml" nowrap>
+
+
+&nbsp;
+</td>
+<td><a href="/horse/2022101386/">ホシニネガイヲ</a></td>
+
+<td>&nbsp;</td>
+</tr><tr>
 <td><a href="/race/list/20250427/">2025/04/27</a></td>
 <td><a href="/race/sum/05/20250427/">2東京2</a></td>
 <td>晴</td>

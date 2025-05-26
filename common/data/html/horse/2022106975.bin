@@ -251,12 +251,12 @@ min-width: unset;
 <li class="AI New">
 <a href="https://race.netkeiba.com/AI/AI.html?rf=navi" title="AI" id="navi_link_AI">A I</a>
 </li>
+<li class="Special">
+<a href="https://race.netkeiba.com/special/index.html?id=0059&rf=navi" title="日本ダービー" id="navi_link_Special">日本ダービー</a>
+</li>
 <li class="Yoso">
 <a href="https://yoso.netkeiba.com/?access=init&rf=navi" title="予想" id="navi_link_yoso">予想</a>
 </li>
-<!-- <li class="Special">
-<a href="https://race.netkeiba.com/special/index.html?id=0133&rf=navi" title="有馬記念" id="navi_link_Special">有馬記念</a>
-</li> -->
 <li class="Builder New">
 <a href="https://builder.netkeiba.com/?rf=navi" title="UMAIビルダー" id="navi_link_builder">UMAIビルダー</a>
 </li>
@@ -338,19 +338,18 @@ $('.login_show').remove();
 </script>
 
 <div class="genre_menu fc">
-        <ul>
-                <li ><a href="/" title="競馬データTOP">競馬データTOP</a></li>
-                <li class="active"><a href="/?pid=horse_top" title="競走馬">競走馬</a></li>
-                <li ><a href="/?pid=jockey_top" title="騎手">騎手</a></li>
-                <li ><a href="/?pid=trainer_top" title="調教師">調教師</a></li>
-                <li ><a href="/?pid=owner_top" title="馬主">馬主</a></li>
-                <li ><a href="/?pid=breeder_top" title="生産者">生産者</a></li>
-                <li ><a href="/?pid=race_top" title="レース">レース</a></li>
-                <li ><a href="/?pid=classic_index" title="クラシック">クラシック</a></li>
-                <li ><a href="https://db.sp.netkeiba.com/winner_search/home" title="勝ち馬サーチ">勝ち馬サーチ</a></li>
-        </ul>
+<ul>
+<li ><a href="/" title="競馬データTOP">競馬データTOP</a></li>
+<li class="active"><a href="/?pid=horse_top" title="競走馬">競走馬</a></li>
+<li ><a href="/?pid=jockey_top" title="騎手">騎手</a></li>
+<li ><a href="/?pid=trainer_top" title="調教師">調教師</a></li>
+<li ><a href="/?pid=owner_top" title="馬主">馬主</a></li>
+<li ><a href="/?pid=breeder_top" title="生産者">生産者</a></li>
+<li ><a href="/?pid=race_top" title="レース">レース</a></li>
+<li ><a href="/?pid=classic_index" title="クラシック">クラシック</a></li>
+<li ><a href="https://db.sp.netkeiba.com/winner_search/home" title="勝ち馬サーチ">勝ち馬サーチ</a></li>
+</ul>
 </div><!-- /.genre_menu -->
-
 <div id="contents" class="fc">
 
 <style>
@@ -443,7 +442,7 @@ padding-top: 2px;
 </a>
 </li>
 </ul>
-<p class="fav_user_count"><a href="__PC_COMMUNITY_NETKEIBA__?pid=horse_favorite_user_list&id=2022106975" title="登録者一覧" class=""><span>737人</span></a></p>
+<p class="fav_user_count"><a href="__PC_COMMUNITY_NETKEIBA__?pid=horse_favorite_user_list&id=2022106975" title="登録者一覧" class=""><span>754人</span></a></p>
 <!-- お気に入り登録ボタン -->
 <ul>
 <li class="pog_regist fc">
@@ -795,13 +794,13 @@ get_horse_detail_note('2022106975', 'Horse_Note_Box');
 <td>
 
 
-640万円 (中央)
+860万円 (中央)
 
 </td>
 </tr>
 <tr>
 <th>通算成績</th>
-<td>5戦0勝 [<a href="/horse/result/2022106975/" title="全競走成績">0-1-3-1</a>]</td>
+<td>6戦0勝 [<a href="/horse/result/2022106975/" title="全競走成績">0-2-3-1</a>]</td>
 </tr>
 <tr>
 <th>主な勝鞍</th>
@@ -1015,6 +1014,59 @@ $('#horse_award_box').html(data.data);
 </thead>
 <tbody>
 <tr>
+<td><a href="/race/list/20250525/">2025/05/25</a></td>
+<td><a href="/race/sum/05/20250525/">2東京10</a></td>
+<td>曇</td>
+<td class="txt_right">2</td>
+<td class=""><a href="/race/202505021002/" title="3歳未勝利">3歳未勝利</a></td>
+<td>
+<a href="/race/movie/202505021002" target="_blank" title="3歳未勝利の映像"><img src="/style/netkeiba.ja/image/icon_douga.png" border="0" /></a>
+
+
+</td>
+<td class="txt_right">16</td>
+<td class="txt_right">1</td>
+<td class="txt_right">2</td>
+<td class="txt_right">8.5</td>
+<td class=" txt_right">4</td>
+<td class="rank_2 txt_right">2</td>
+<td>
+<a href="/jockey/result/recent/01096/" title="大野拓弥">大野拓弥</a>
+
+</td>
+<td>57</td>
+<td>ダ1600</td>
+<td>不</td>
+
+<td class="bml txt_right">
+
+
+&nbsp;
+</td>
+<td class="txt_right">1:36.3</td>
+<td class="txt_right">0.0</td>
+<td class="bml txt_right">
+
+
+&nbsp;
+</td>
+<td>4-4</td>
+<td>34.8-36.3</td>
+<td class="rank_2">35.7</td>
+<td>500(+12)</td>
+<td class="bml" align="center" nowrap>
+<a href="/?pid=horse_comment&id=2022106975&rid=202505021002"><img src="/style/netkeiba.ja/image/ico_comment.gif" width="13" height="13" border="0" /></a>
+
+</td>
+<td class="bml" nowrap>
+
+
+&nbsp;
+</td>
+<td><a href="/horse/2022101964/">デルマムーン</a></td>
+
+<td>220.0</td>
+</tr><tr>
 <td><a href="/race/list/20250106/">2025/01/06</a></td>
 <td><a href="/race/sum/06/20250106/">1中山2</a></td>
 <td>曇</td>

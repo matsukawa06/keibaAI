@@ -251,12 +251,12 @@ min-width: unset;
 <li class="AI New">
 <a href="https://race.netkeiba.com/AI/AI.html?rf=navi" title="AI" id="navi_link_AI">A I</a>
 </li>
+<li class="Special">
+<a href="https://race.netkeiba.com/special/index.html?id=0059&rf=navi" title="日本ダービー" id="navi_link_Special">日本ダービー</a>
+</li>
 <li class="Yoso">
 <a href="https://yoso.netkeiba.com/?access=init&rf=navi" title="予想" id="navi_link_yoso">予想</a>
 </li>
-<!-- <li class="Special">
-<a href="https://race.netkeiba.com/special/index.html?id=0133&rf=navi" title="有馬記念" id="navi_link_Special">有馬記念</a>
-</li> -->
 <li class="Builder New">
 <a href="https://builder.netkeiba.com/?rf=navi" title="UMAIビルダー" id="navi_link_builder">UMAIビルダー</a>
 </li>
@@ -442,7 +442,7 @@ padding-top: 2px;
 </a>
 </li>
 </ul>
-<p class="fav_user_count"><a href="__PC_COMMUNITY_NETKEIBA__?pid=horse_favorite_user_list&id=2022101405" title="登録者一覧" class=""><span>467人</span></a></p>
+<p class="fav_user_count"><a href="__PC_COMMUNITY_NETKEIBA__?pid=horse_favorite_user_list&id=2022101405" title="登録者一覧" class=""><span>465人</span></a></p>
 <!-- お気に入り登録ボタン -->
 <ul>
 <li class="pog_regist fc">
@@ -797,13 +797,13 @@ get_horse_detail_note('2022101405', 'Horse_Note_Box');
 <td>
 
 
-220万円 (中央)
+304万円 (中央)
 
 </td>
 </tr>
 <tr>
 <th>通算成績</th>
-<td>1戦0勝 [<a href="/horse/result/2022101405/" title="全競走成績">0-1-0-0</a>]</td>
+<td>2戦0勝 [<a href="/horse/result/2022101405/" title="全競走成績">0-1-0-1</a>]</td>
 </tr>
 <tr>
 <th>主な勝鞍</th>
@@ -1017,6 +1017,59 @@ $('#horse_award_box').html(data.data);
 </thead>
 <tbody>
 <tr>
+<td><a href="/race/list/20250525/">2025/05/25</a></td>
+<td><a href="/race/sum/05/20250525/">2東京10</a></td>
+<td>曇</td>
+<td class="txt_right">4</td>
+<td class=""><a href="/race/202505021004/" title="3歳未勝利">3歳未勝利</a></td>
+<td>
+<a href="/race/movie/202505021004" target="_blank" title="3歳未勝利の映像"><img src="/style/netkeiba.ja/image/icon_douga.png" border="0" /></a>
+
+
+</td>
+<td class="txt_right">18</td>
+<td class="txt_right">3</td>
+<td class="txt_right">6</td>
+<td class="txt_right">2.2</td>
+<td class="rank_1 txt_right">1</td>
+<td class="bml txt_right">4</td>
+<td>
+<a href="/jockey/result/recent/01163/" title="坂井瑠星">坂井瑠星</a>
+
+</td>
+<td>57</td>
+<td>芝1600</td>
+<td>稍</td>
+
+<td class="bml txt_right">
+
+
+&nbsp;
+</td>
+<td class="txt_right">1:34.6</td>
+<td class="txt_right">0.9</td>
+<td class="bml txt_right">
+
+
+&nbsp;
+</td>
+<td>3-4</td>
+<td>34.8-35.3</td>
+<td class="bml">35.7</td>
+<td>524(+2)</td>
+<td class="bml" align="center" nowrap>
+<a href="/?pid=horse_comment&id=2022101405&rid=202505021004"><img src="/style/netkeiba.ja/image/ico_comment.gif" width="13" height="13" border="0" /></a>
+
+</td>
+<td class="bml" nowrap>
+
+
+&nbsp;
+</td>
+<td><a href="/horse/2022102635/">バンブルビー</a></td>
+
+<td>84.0</td>
+</tr><tr>
 <td><a href="/race/list/20250504/">2025/05/04</a></td>
 <td><a href="/race/sum/05/20250504/">2東京4</a></td>
 <td>晴</td>

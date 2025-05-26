@@ -158,6 +158,36 @@ def create_horse_results(
     concat_df.to_csv(save_dir / save_filename, sep="\t")
     return concat_df.reset_index()
 
+def create_return_tables(
+    html_path_list: list[Path],
+    save_dir: Path = RAWDF_DIR,
+    save_filename: str = "return_tables.csv",
+) -> pd.DataFrame:
+    """
+    raceページのhtmlを読み込んで、払い戻しテーブルに加工する関数。
+    """
+    dfs = {}
+    for html_path in tqdm(html_path_list):
+        with open(html_path, "rb") as f:
+            try:
+                html = f.read()
+                df_list = pd.read_html(html)
+                df = pd.concat([df_list[1], df_list[2]])
+
+                # ファイル名からrace_idを取得
+                race_id  = html_path.stem
+                df.index = [race_id] * len(df)
+                dfs[race_id] = df
+            except IndexError as e:
+                print(f"table not found at {race_id}")
+                continue
+    concat_df = pd.concat(dfs.values())
+    concat_df.index.name = "race_id"
+    save_dir.mkdir(exist_ok=True, parents=True)
+    concat_df.to_csv(save_dir / save_filename, sep="\t")
+    return concat_df.reset_index()
+
+
 def update_rawdf(
     new_df: pd.DataFrame,
     key: str,
